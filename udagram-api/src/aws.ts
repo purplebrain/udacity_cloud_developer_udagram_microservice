@@ -1,10 +1,15 @@
 import AWS = require('aws-sdk');
+import { url } from 'inspector';
 import {config} from './config/config';
 
 
 // Configure AWS
-const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-AWS.config.credentials = credentials;
+//const credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
+//AWS.config.credentials = credentials;
+if (config.aws_profile !== "DEPLOYED") {
+  var credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
+  AWS.config.credentials = credentials;
+}
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
@@ -16,11 +21,13 @@ export const s3 = new AWS.S3({
 export function getGetSignedUrl( key: string ): string {
   const signedUrlExpireSeconds = 60 * 5;
 
-  return s3.getSignedUrl('getObject', {
+  const url = s3.getSignedUrl('getObject', {
     Bucket: config.aws_media_bucket,
     Key: key,
     Expires: signedUrlExpireSeconds,
   });
+  console.log( `S3 sent the URL : ${url}` );
+  return url;
 }
 
 // Generates an AWS signed URL for uploading objects

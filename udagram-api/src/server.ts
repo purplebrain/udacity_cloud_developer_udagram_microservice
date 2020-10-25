@@ -40,6 +40,16 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
   // Start the Server
   app.listen( port, () => {
     console.log( `server running ${config.url}` );
+    console.log( `ENVIRONMENT VARIABLES` );
+    console.log( `AWS_ACCESS_KEY_ID : ${process.env.AWS_ACCESS_KEY_ID}` );
+    console.log( `AWS_SECRET_ACCESS_KEY : ${process.env.AWS_SECRET_ACCESS_KEY}` );
+    console.log( `AWS_REGION : ${config.aws_region}` );
+    console.log( `AWS_PROFILE : ${config.aws_profile}` );
+    console.log( `AWS_MEDIA_BUCKET : ${config.aws_media_bucket}` );
+    console.log( `POSTGRES_USERNAME : ${config.username}` );
+    console.log( `POSTGRES_PASSWORD : ${config.password}` );
+    console.log( `POSTGRES_DB : ${config.database}` );
+    console.log( `POSTGRES_HOST : ${config.host}` );
     console.log( `press CTRL+C to stop server` );
   } );
 })();
