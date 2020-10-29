@@ -13,6 +13,7 @@ COPY package*.json ./
 COPY ./ /usr/src/app/
 
 # Install dependencies
+RUN mkdir ./www
 RUN npm install -g @ionic/cli
 RUN npm i -D -E @angular/cli
 

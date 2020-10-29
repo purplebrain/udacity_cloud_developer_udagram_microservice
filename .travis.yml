@@ -1,36 +1,38 @@
 env:
   global:
-    - VERSION=1.${TRAVIS_BUILD_NUMBER}
-    - DOCKER_IMAGE=repo_udagram
+   - VERSION=1.${TRAVIS_BUILD_NUMBER}
+   - DOCKER_REPO=repo_udagram
+   - DOCKER_TAG=v${VERSION}
   matrix:  
-    - SERVICE=frontend
-      DOCKERFILE=udagram-frontend/Dockerfile
-      DOCKER_TAG=tag_frontend_latest
-    - SERVICE=backend
-      DOCKERFILE=udagram-api/Dockerfile
-      DOCKER_TAG=tag_backend_latest
+   - SERVICE=frontend
+     DOCKERFILE=udagram-frontend/Dockerfile
+     DOCKER_IMAGE=img_frontend
+   - SERVICE=backend
+     DOCKERFILE=udagram-api/Dockerfile
+     DOCKER_IMAGE=img_backend
 
 language: node_js
 node_js:
-  - 13
+ - 13
 
 services:
-  - docker
+ - docker
 
 # Pre-testing installs
 install:
-  - echo "nothing needs to be installed"
+ - echo "nothing needs to be installed"
 
 # Scripts to be run such as tests
 before_script:
-  - echo "no tests"
+ - echo "no tests"
 
 script:
-  - docker --version # print the version for logging
-  - docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f ${DOCKERFILE} .
+ - docker --version # print the version for logging
+ - docker build -t ${DOCKER_IMAGE} -f ${DOCKERFILE} .
+ - docker tag ${DOCKER_IMAGE} ${DOCKER_USERNAME}/${DOCKER_REPO}:${DOCKER_TAG}
 
 after_success:
-  - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
-  - docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE}:${DOCKER_TAG}
+ - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+ - docker push ${DOCKER_USERNAME}/${DOCKER_REPO}:${DOCKER_TAG}
 
 
