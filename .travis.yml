@@ -1,0 +1,36 @@
+env:
+  global:
+    - VERSION=1.${TRAVIS_BUILD_NUMBER}
+  matrix:  
+    - SERVICE=frontend
+      DOCKER_BUILD=repo_udagram:tag_frontend_latest
+      DOCKERFILE=./udagram-frontend/Dockerfile
+    - SERVICE=backend
+      DOCKER_BUILD=repo_udagram:tag_backend_latest
+      DOCKERFILE=./udagram-api/Dockerfile
+
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version # print the version for logging
+  - docker build -t ${DOCKER_BUILD} -f ${DOCKERFILE}
+  - docker tag img_simple_node ${DOCKER_USERNAME}/repo_simple_node:tag_simple_node_v1
+
+after_success:
+  - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+  - docker push ${DOCKER_USERNAME}/${DOCKER_BUILD}
+
+
