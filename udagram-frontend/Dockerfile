@@ -9,13 +9,12 @@ WORKDIR /usr/src/app
 # package.json and package-lock.json
 COPY package*.json ./
 
-# Copy all other files
-COPY ./ /usr/src/app/
-
 # Install dependencies
-RUN mkdir ./www
 RUN npm install -g @ionic/cli
 RUN npm i -D -E @angular/cli
+
+# Copy all other files
+COPY ./ /usr/src/app/
 
 # Build 'Ionic'
 RUN ionic build
