@@ -16,6 +16,9 @@ RUN npm i -D -E @angular/cli
 # Copy all other files
 COPY ./ /usr/src/app/
 
+# Change directory
+RUN cd /usr/src/app/
+
 # Build 'Ionic'
 RUN ionic build
 
