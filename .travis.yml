@@ -2,14 +2,15 @@ env:
   global:
    - VERSION=1.${TRAVIS_BUILD_NUMBER}
    - DOCKER_REPO=repo_udagram
-   - DOCKER_TAG=v${VERSION}
   matrix:  
    - SERVICE=frontend
      DOCKERFILE=udagram-frontend/Dockerfile
      DOCKER_IMAGE=img_frontend
+   	 DOCKER_TAG=frontend_v${VERSION}
    - SERVICE=backend
      DOCKERFILE=udagram-api/Dockerfile
      DOCKER_IMAGE=img_backend
+   	 DOCKER_TAG=backend_v${VERSION}
 
 language: node_js
 node_js:
