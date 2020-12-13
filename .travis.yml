@@ -6,11 +6,11 @@ env:
    - SERVICE=frontend
      DOCKERFILE=udagram-frontend/Dockerfile
      DOCKER_IMAGE=img_frontend
-   	 DOCKER_TAG=frontend_v${VERSION}
+     DOCKER_TAG=frontend_v${VERSION}
    - SERVICE=backend
      DOCKERFILE=udagram-api/Dockerfile
      DOCKER_IMAGE=img_backend
-   	 DOCKER_TAG=backend_v${VERSION}
+     DOCKER_TAG=backend_v${VERSION}
 
 language: node_js
 node_js:
