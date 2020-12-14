@@ -37,7 +37,7 @@ script:
  - docker tag ${DOCKER_IMAGE} ${DOCKER_REPO}:${DOCKER_TAG}
 
 after_success:
- - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+ - docker login --username ${DOCKER_USERNAME}  --password ${DOCKER_PASSWORD}
  - docker push ${DOCKER_USERNAME}/${DOCKER_REPO}:${DOCKER_TAG}
 
 
