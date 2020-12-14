@@ -5,15 +5,15 @@ env:
   matrix:  
    - SERVICE=svcFrontend
      DOCKERFILE=udagram-frontend/Dockerfile
-     DOCKER_IMAGE=imgFrontend
+     DOCKER_IMAGE=img_frontend
      DOCKER_TAG=frontend_v${VERSION}
    - SERVICE=svcBackendFeed
      DOCKERFILE=udagram-api/feed/Dockerfile
-     DOCKER_IMAGE=imgBackendFeed
+     DOCKER_IMAGE=img_backendfeed
      DOCKER_TAG=tagBackendFeed_v${VERSION}
    - SERVICE=svcBackendUser
      DOCKERFILE=udagram-api/user/Dockerfile
-     DOCKER_IMAGE=imgBackendUser
+     DOCKER_IMAGE=img_backenduser
      DOCKER_TAG=tagBackendUser_v${VERSION}
 
 language: node_js
