@@ -3,18 +3,18 @@ env:
    - VERSION=1.${TRAVIS_BUILD_NUMBER}
    - DOCKER_REPO=repo_udagram
   matrix:  
-   - SERVICE=frontend
+   - SERVICE=svcFrontend
      DOCKERFILE=udagram-frontend/Dockerfile
-     DOCKER_IMAGE=img_frontend
+     DOCKER_IMAGE=imgFrontend
      DOCKER_TAG=frontend_v${VERSION}
-   - SERVICE=backend_feed
+   - SERVICE=svcBackendFeed
      DOCKERFILE=udagram-api/feed/Dockerfile
-     DOCKER_IMAGE=img_backend_feed
-     DOCKER_TAG=backend_feed_v${VERSION}
-   - SERVICE=backend_user
+     DOCKER_IMAGE=imgBackendFeed
+     DOCKER_TAG=tagBackendFeed_v${VERSION}
+   - SERVICE=svcBackendUser
      DOCKERFILE=udagram-api/user/Dockerfile
-     DOCKER_IMAGE=img_backend_user
-     DOCKER_TAG=backend_user_v${VERSION}
+     DOCKER_IMAGE=imgBackendUser
+     DOCKER_TAG=tagBackendUser_v${VERSION}
 
 language: node_js
 node_js:
