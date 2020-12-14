@@ -7,10 +7,14 @@ env:
      DOCKERFILE=udagram-frontend/Dockerfile
      DOCKER_IMAGE=img_frontend
      DOCKER_TAG=frontend_v${VERSION}
-   - SERVICE=backend
-     DOCKERFILE=udagram-api/Dockerfile
-     DOCKER_IMAGE=img_backend
-     DOCKER_TAG=backend_v${VERSION}
+   - SERVICE=backend_feed
+     DOCKERFILE=udagram-api/feed/Dockerfile
+     DOCKER_IMAGE=img_backend_feed
+     DOCKER_TAG=backend_feed_v${VERSION}
+   - SERVICE=backend_user
+     DOCKERFILE=udagram-api/user/Dockerfile
+     DOCKER_IMAGE=img_backend_user
+     DOCKER_TAG=backend_user_v${VERSION}
 
 language: node_js
 node_js:
