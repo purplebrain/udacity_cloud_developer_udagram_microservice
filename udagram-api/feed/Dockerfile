@@ -7,10 +7,12 @@ WORKDIR /usr/src/app
 
 # Install app dependencies by copying
 # package.json and package-lock.json
-COPY udagram-api/feed/package*.json ./
+#COPY udagram-api/feed/package*.json ./
+COPY package*.json ./
 
 # Copy all other files
-COPY udagram-api/feed/ ./
+#COPY udagram-api/feed/ ./
+COPY . ./
 
 # Install dependencies
 RUN npm install --build-from-source .

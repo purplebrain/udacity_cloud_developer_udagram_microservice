@@ -7,6 +7,10 @@ env:
      DOCKERFILE=udagram-frontend/Dockerfile
      DOCKER_IMAGE=img_frontend
      DOCKER_TAG=tagfrontend_v${VERSION}
+   - SERVICE=svcRproxy
+     DOCKERFILE=udagram-rproxy/Dockerfile
+     DOCKER_IMAGE=img_rproxy
+     DOCKER_TAG=tagrproxy_v${VERSION}
    - SERVICE=svcBackendFeed
      DOCKERFILE=udagram-api/feed/Dockerfile
      DOCKER_IMAGE=img_backendfeed
@@ -33,7 +37,7 @@ before_script:
 
 script:
  - docker --version # print the version for logging
- - docker build -t ${DOCKER_IMAGE} -f ${DOCKERFILE} .
+ - docker-compose build
  - docker tag ${DOCKER_IMAGE} ${DOCKER_USERNAME}/${DOCKER_REPO}:${DOCKER_TAG}
 
 after_success:

@@ -3,12 +3,12 @@ FROM beevelop/ionic AS ionic
 WORKDIR /usr/src/app
 # Install app dependencies by copying
 # package.json and package-lock.json
-COPY udagram-frontend/package*.json ./
-COPY udagram-frontend/ionic.config.json ./
+COPY package*.json ./
+COPY ionic.config.json ./
 # Install dependencies
 RUN npm ci
 # Copy app source
-COPY udagram-frontend/ .
+COPY . .
 RUN ionic build
 ## Run 
 FROM nginx:alpine

@@ -42,6 +42,7 @@ router.get('/', async (req: Request, res: Response) => {
 router.get('/:id',
     async (req: Request, res: Response) => {
       const {id} = req.params;
+      console.log( `FEED/GET : get item by ID : ${id}` );
       const item = await FeedItem.findByPk(id);
       res.send(item);
     });
@@ -51,6 +52,7 @@ router.get('/signed-url/:fileName',
     requireAuth,
     async (req: Request, res: Response) => {
       const {fileName} = req.params;
+      console.log( `FEED/GET : get signed-url for : ${fileName}` );
       const url = AWS.getPutSignedUrl(fileName);
       res.status(201).send({url: url});
     });

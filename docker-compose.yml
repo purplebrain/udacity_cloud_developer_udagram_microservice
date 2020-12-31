@@ -1,10 +1,74 @@
+version: '3.5'
+networks:
+    nw_udagram:
+        driver: bridge
+
 services:
-	udagram-frontend:
-		image:	"repo_udagram/tag_frontend_v1"
-		ports:	8100:8100
-		links:	udagram-backend
-	udagram-backend:
-		image:	"repo_udagram/tag_backend_v1"
-		ports:	8080:8080
+    frontend:
+        build:
+            context: ./udagram-frontend
+            dockerfile: Dockerfile      
+        image: repo_udagram:tag_frontend_v1
+        container_name: ctr_frontend
+        networks:
+            - nw_udagram
+        ports:
+            - 8100:80
+ 
+    reverseproxy:
+        depends_on:
+            - feed
+            - users
+        build:
+            context: ./udagram-rproxy
+            dockerfile: Dockerfile      
+        image: repo_udagram:tag_rproxy_v1
+        container_name: ctr_rproxy
+        networks:
+            - nw_udagram
+        ports:
+            - 8080:80
+ 
+    feed:
+        build:
+            context: ./udagram-api/feed
+            dockerfile: Dockerfile
+        image: repo_udagram:tag_backend_feed_v1
+        container_name: ctr_backend_feed
+        networks:
+            - nw_udagram
+        volumes:
+            - "/home/aku/.aws:/root/.aws"
+        environment:
+            - "AWS_REGION=us-west-1" 
+            - "AWS_MEDIA_BUCKET=s3akuudacityudagram" 
+            - "AWS_PROFILE=userAkuUdacityUdagram" 
+            - "POSTGRES_USERNAME=codenameaku" 
+            - "POSTGRES_PASSWORD=MSD4aws1" 
+            - "POSTGRES_DATABASE=rdsAkuUdacityUdagram" 
+            - "POSTGRES_HOST=rdsakuudacityudagram.cwkcejwii55z.us-west-1.rds.amazonaws.com" 
+            - "POSTGRES_DB=rdsAkuUdacityUdagram" 
+            - "URL=http://localhost:8100" 
+            - "JWT_SECRET=helloworld"
 
-
+    users:
+        build:
+            context: ./udagram-api/user
+            dockerfile: Dockerfile      
+        image: repo_udagram:tag_backend_users_v1
+        container_name: ctr_backend_users
+        networks:
+            - nw_udagram
+        volumes:
+            - "/home/aku/.aws:/root/.aws"
+        environment:
+            - "AWS_REGION=us-west-1" 
+            - "AWS_MEDIA_BUCKET=s3akuudacityudagram" 
+            - "AWS_PROFILE=userAkuUdacityUdagram" 
+            - "POSTGRES_USERNAME=codenameaku" 
+            - "POSTGRES_PASSWORD=MSD4aws1" 
+            - "POSTGRES_DATABASE=rdsAkuUdacityUdagram" 
+            - "POSTGRES_HOST=rdsakuudacityudagram.cwkcejwii55z.us-west-1.rds.amazonaws.com" 
+            - "POSTGRES_DB=rdsAkuUdacityUdagram" 
+            - "URL=http://localhost:8100" 
+            - "JWT_SECRET=helloworld"
