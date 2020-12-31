@@ -55,7 +55,7 @@ services:
         build:
             context: ./udagram-api/user
             dockerfile: Dockerfile      
-        image: repo_udagram:tag_backend_users_v1
+        image: repo_udagram:tag_backend_users
         container_name: ctr_backend_users
         networks:
             - nw_udagram

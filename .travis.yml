@@ -13,7 +13,7 @@ env:
      DOCKER_TAG=tag_backend_feed
    - SERVICE=svcBackendUser
      DOCKERFILE=udagram-api/user/Dockerfile
-     DOCKER_TAG=tag_backend_user
+     DOCKER_TAG=tag_backend_users
 
 language: node_js
 node_js:
