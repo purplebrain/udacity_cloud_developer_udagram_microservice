@@ -1,24 +1,19 @@
 env:
   global:
-   - VERSION=1.${TRAVIS_BUILD_NUMBER}
    - DOCKER_REPO=repo_udagram
   matrix:  
    - SERVICE=svcFrontend
      DOCKERFILE=udagram-frontend/Dockerfile
-     DOCKER_IMAGE=img_frontend
-     DOCKER_TAG=tagfrontend_v${VERSION}
+     DOCKER_TAG=tag_frontend
    - SERVICE=svcRproxy
      DOCKERFILE=udagram-rproxy/Dockerfile
-     DOCKER_IMAGE=img_rproxy
-     DOCKER_TAG=tagrproxy_v${VERSION}
+     DOCKER_TAG=tag_rproxy
    - SERVICE=svcBackendFeed
      DOCKERFILE=udagram-api/feed/Dockerfile
-     DOCKER_IMAGE=img_backendfeed
-     DOCKER_TAG=tagbackendfeed_v${VERSION}
+     DOCKER_TAG=tag_backend_feed
    - SERVICE=svcBackendUser
      DOCKERFILE=udagram-api/user/Dockerfile
-     DOCKER_IMAGE=img_backenduser
-     DOCKER_TAG=tagbackenduser_v${VERSION}
+     DOCKER_TAG=tag_backend_user
 
 language: node_js
 node_js:
@@ -38,7 +33,6 @@ before_script:
 script:
  - docker --version # print the version for logging
  - docker-compose build
- - docker tag ${DOCKER_IMAGE} ${DOCKER_USERNAME}/${DOCKER_REPO}:${DOCKER_TAG}
 
 after_success:
  - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
