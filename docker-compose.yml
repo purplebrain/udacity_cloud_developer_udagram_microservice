@@ -9,7 +9,7 @@ services:
             context: ./udagram-frontend
             dockerfile: Dockerfile      
         image: msd4docker/repo_udagram:tag_frontend
-        container_name: ctr_frontend
+        container_name: akuudagram-frontend
         networks:
             - nw_udagram
         ports:
@@ -23,7 +23,7 @@ services:
             context: ./udagram-rproxy
             dockerfile: Dockerfile      
         image: msd4docker/repo_udagram:tag_rproxy
-        container_name: ctr_rproxy
+        container_name: akuudagram-rproxy
         networks:
             - nw_udagram
         ports:
@@ -34,7 +34,7 @@ services:
             context: ./udagram-api/feed
             dockerfile: Dockerfile
         image: msd4docker/repo_udagram:tag_backend_feed
-        container_name: ctr_backend_feed
+        container_name: akuudagram-backend-feed
         networks:
             - nw_udagram
         volumes:
@@ -56,7 +56,7 @@ services:
             context: ./udagram-api/user
             dockerfile: Dockerfile      
         image: msd4docker/repo_udagram:tag_backend_users
-        container_name: ctr_backend_users
+        container_name: akuudagram-backend-users
         networks:
             - nw_udagram
         volumes:
