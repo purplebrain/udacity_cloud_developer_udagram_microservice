@@ -5,10 +5,10 @@ metadata:
     service: akuudagram-rproxy
   name: akuudagram-rproxy
 spec:
-  ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 80
+  type: LoadBalancer
   selector:
     service: akuudagram-rproxy
-  type: LoadBalancer
+  ports:
+  - name: "reverse-proxy"
+    port: 8080
+    targetPort: 8080

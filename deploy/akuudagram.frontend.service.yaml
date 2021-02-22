@@ -5,13 +5,10 @@ metadata:
   labels:
     app: akuudagram-frontend
 spec:
+  type: LoadBalancer
   selector:
     app: akuudagram-frontend
   ports:
   - name: "frontend"
     port: 8100
     targetPort: 80
-  - name: "reverse-proxy"
-    port: 8080
-    targetPort: 8080
-  type: LoadBalancer

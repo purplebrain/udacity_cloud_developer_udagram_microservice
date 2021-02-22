@@ -20,9 +20,4 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8100
-      - name: akuudagram-rproxy
-        image: msd4docker/repo_udagram:tag_rproxy
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
       restartPolicy: Always

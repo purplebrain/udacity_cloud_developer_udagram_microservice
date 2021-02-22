@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: akuudagram-rproxy
-        image: msd4docker/repo_udagram:tag_rproxy_expt
+        image: msd4docker/repo_udagram:tag_rproxy
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
       restartPolicy: Always
