@@ -27,7 +27,7 @@ services:
         networks:
             - nw_udagram
         ports:
-            - 8080:80
+            - 8080:8080
  
     feed:
         build:
