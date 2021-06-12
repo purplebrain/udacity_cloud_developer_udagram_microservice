@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: appudagram-backend-users
+  name: akuudagram-backend-users
   labels:
-    app: appudagram-backend-users
+    app: akuudagram-backend-users
 spec:
   ports:
   - name: "8082"
     port: 8082
     targetPort: 80
   selector:
-    run: appudagram-backend-users
+    app: akuudagram-backend-users
