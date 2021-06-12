@@ -19,5 +19,5 @@ spec:
         image: msd4docker/repo_udagram:tag_frontend
         imagePullPolicy: Always
         ports:
-        - containerPort: 8100
+        - containerPort: 80
       restartPolicy: Always
