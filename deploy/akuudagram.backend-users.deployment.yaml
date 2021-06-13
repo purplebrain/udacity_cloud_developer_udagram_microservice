@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: akuudagram-backend-users
-        image: msd4docker/repo_udagram:tag_backend_users
+        image: msd4docker/repo_udagram:tag_backend_user
         imagePullPolicy: Always
         env:
         - name: AWS_REGION
