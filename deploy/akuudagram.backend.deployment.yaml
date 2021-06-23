@@ -39,6 +39,10 @@ spec:
           value: "http://localhost:8100"
         - name: JWT_SECRET
           value: "helloworld"
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true
         ports:
         - containerPort: 8081
       - name: akuudagram-backend-users
@@ -65,6 +69,14 @@ spec:
           value: "http://localhost:8100"
         - name: JWT_SECRET
           value: "helloworld"
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true
         ports:
         - containerPort: 8082
       restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
