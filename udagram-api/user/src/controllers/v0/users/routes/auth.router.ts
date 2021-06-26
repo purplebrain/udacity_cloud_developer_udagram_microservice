@@ -115,4 +115,10 @@ router.get('/', async (req: Request, res: Response) => {
   res.send('auth');
 });
 
+// Health Check
+// Docker Health Check
+router.get( '/health', async ( req, res ) => {
+  res.status(200).send('API feed is up');
+} );
+
 export const AuthRouter: Router = router;

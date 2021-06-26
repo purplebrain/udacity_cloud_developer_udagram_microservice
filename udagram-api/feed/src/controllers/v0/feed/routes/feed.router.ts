@@ -83,4 +83,10 @@ router.post('/',
       res.status(201).send(savedItem);
     });
 
+// Health Check
+// Docker Health Check
+router.get( '/health', async ( req, res ) => {
+  res.status(200).send('API feed is up');
+} );
+
 export const FeedRouter: Router = router;
