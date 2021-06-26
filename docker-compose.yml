@@ -39,17 +39,6 @@ services:
             - nw_udagram
         volumes:
             - "/home/aku/.aws:/root/.aws"
-        environment:
-            - "AWS_REGION=us-west-1" 
-            - "AWS_MEDIA_BUCKET=s3akuudacityudagram" 
-            - "AWS_PROFILE=userAkuUdacityUdagram" 
-            - "POSTGRES_USERNAME=codenameaku" 
-            - "POSTGRES_PASSWORD=MSD4aws1" 
-            - "POSTGRES_DATABASE=rdsAkuUdacityUdagram" 
-            - "POSTGRES_HOST=rdsakuudacityudagram.cwkcejwii55z.us-west-1.rds.amazonaws.com" 
-            - "POSTGRES_DB=rdsAkuUdacityUdagram" 
-            - "URL=http://localhost:8100" 
-            - "JWT_SECRET=helloworld"
 
     users:
         build:
@@ -61,14 +50,3 @@ services:
             - nw_udagram
         volumes:
             - "/home/aku/.aws:/root/.aws"
-        environment:
-            - "AWS_REGION=us-west-1" 
-            - "AWS_MEDIA_BUCKET=s3akuudacityudagram" 
-            - "AWS_PROFILE=userAkuUdacityUdagram" 
-            - "POSTGRES_USERNAME=codenameaku" 
-            - "POSTGRES_PASSWORD=MSD4aws1" 
-            - "POSTGRES_DATABASE=rdsAkuUdacityUdagram" 
-            - "POSTGRES_HOST=rdsakuudacityudagram.cwkcejwii55z.us-west-1.rds.amazonaws.com" 
-            - "POSTGRES_DB=rdsAkuUdacityUdagram" 
-            - "URL=http://localhost:8100" 
-            - "JWT_SECRET=helloworld"
